@@ -12,9 +12,8 @@ buttonEl.addEventListener("click",
      
 // Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
     let arrayNumbers = [];
-    let totalBombs = 16;
               
-    while(arrayNumbers.length < totalBombs){
+    while(arrayNumbers.length < 16){
          const randomNumber = Math.floor(Math.random() * gridLevel + 1)
               
          if(!arrayNumbers.includes(randomNumber)){
