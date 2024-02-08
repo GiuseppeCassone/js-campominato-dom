@@ -4,21 +4,23 @@ let newElement;
 buttonEl.addEventListener("click",
  function() {
     
-// Creazione griglia nelle diverse dimensioni
-    let gridElement = document.querySelector(".grid");
-    gridElement.innerHTML = "";
-    let gridLevel = decideDifficult();
+     
+     // Creazione griglia nelle diverse dimensioni
+     let gridElement = document.querySelector(".grid");
+     gridElement.innerHTML = "";
+     let gridLevel = decideDifficult();
+     
 // Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
     let arrayNumbers = [];
-    // let totalBombs = 16;
-    
-    while(arrayNumbers.length < 16){
-        const randomNumber = Math.floor(Math.random() * gridLevel + 1)
-    
-        if(!arrayNumbers.includes(randomNumber)){
-            arrayNumbers.push(randomNumber);
-        }
-    }
+    let totalBombs = 16;
+              
+    while(arrayNumbers.length < totalBombs){
+         const randomNumber = Math.floor(Math.random() * gridLevel + 1)
+              
+         if(!arrayNumbers.includes(randomNumber)){
+           arrayNumbers.push(randomNumber);
+          }
+      }
 
 
     for(let i = 1; i <= gridLevel; i++){
@@ -39,15 +41,15 @@ buttonEl.addEventListener("click",
 
             this.classList.add("active");
             console.log(this.innerText);
+
+            if(arrayNumbers.includes(Number(this.innerText))){
+                this.classList.add("red");
+            }
         })
 
         gridElement.append(newElement);
 
     }
-
-
-    
-
    
 
  })
