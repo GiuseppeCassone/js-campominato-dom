@@ -8,6 +8,18 @@ buttonEl.addEventListener("click",
     let gridElement = document.querySelector(".grid");
     gridElement.innerHTML = "";
     let gridLevel = decideDifficult();
+// Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
+    let arrayNumbers = [];
+    // let totalBombs = 16;
+    
+    while(arrayNumbers.length < 16){
+        const randomNumber = Math.floor(Math.random() * gridLevel + 1)
+    
+        if(!arrayNumbers.includes(randomNumber)){
+            arrayNumbers.push(randomNumber);
+        }
+    }
+
 
     for(let i = 1; i <= gridLevel; i++){
 
@@ -17,17 +29,26 @@ buttonEl.addEventListener("click",
         newElement.style.fontSize = "14px";
         otherDifficultClass(newElement);
 
+         if(arrayNumbers.includes(i)){
+             newElement.classList.add("loseCell");
+         }
+
 // Inserito il cambio di colore delle celle al click
         newElement.addEventListener("click", 
         function(){
 
-            this.classList.toggle("active");
+            this.classList.add("active");
             console.log(this.innerText);
         })
 
         gridElement.append(newElement);
 
     }
+
+
+    
+
+   
 
  })
 
@@ -38,7 +59,7 @@ buttonEl.addEventListener("click",
 
     if(selectOptions == "1") {
 
-        difficultOptions = 49;
+        difficultOptions = 100;
     }
 
     if(selectOptions == "2") {
@@ -48,7 +69,7 @@ buttonEl.addEventListener("click",
 
     if(selectOptions == "3") {
 
-        difficultOptions = 100;
+        difficultOptions = 49;
     }
 
     return difficultOptions;
