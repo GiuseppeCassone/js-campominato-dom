@@ -1,11 +1,12 @@
 const buttonEl = document.querySelector("button");
 let newElement;
 
+
 buttonEl.addEventListener("click",
- function() {
+ function(startGame) {
     
      
-     // Creazione griglia nelle diverse dimensioni
+ // Creazione griglia nelle diverse dimensioni
      let gridElement = document.querySelector(".grid");
      gridElement.innerHTML = "";
      let gridLevel = decideDifficult();
@@ -26,32 +27,42 @@ buttonEl.addEventListener("click",
 
         newElement = document.createElement("div");
         newElement.innerHTML = i;
+        newElement.classList.add("square")
         newElement.style.fontWeight = "bold";
         newElement.style.fontSize = "14px";
         otherDifficultClass(newElement);
 
-         if(arrayNumbers.includes(i)){
-             newElement.classList.add("loseCell");
+        if(arrayNumbers.includes(i)){
+            newElement.classList.add("loseCell");
          }
 
 // Inserito il cambio di colore delle celle al click
+        
         newElement.addEventListener("click", 
-        function(){
+        function(playGame){
 
             this.classList.add("active");
             console.log(this.innerText);
 
             if(arrayNumbers.includes(Number(this.innerText))){
-                this.classList.add("red");
+                for(let i = 1; i <= gridLevel; i++){
+                    let cells = document.querySelectorAll(".square");
+                    if(arrayNumbers.includes(i)){
+                        let bombs = cells [i - 1];
+                        bombs.classList.add("red");
+                        
+                    }
+                }
             }
         })
-
+        
         gridElement.append(newElement);
 
     }
    
 
  })
+
 
 //  Funzione che consente la formazione della griglia in base alla difficoltà selezionata
  function decideDifficult() {
@@ -91,10 +102,7 @@ buttonEl.addEventListener("click",
         squareClass = "medium-square";
         sizeCell.classList.add(squareClass);
     }
-    
-    if(decideDifficult() == 100){
-        squareClass = "square";
-        sizeCell.classList.add(squareClass);
-    }
 
  }
+
+
