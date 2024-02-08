@@ -1,4 +1,7 @@
 const buttonEl = document.querySelector("button");
+const layerEl = document.createElement("div");
+layerEl.classList.add("lose");
+let gridElement = document.querySelector(".grid");
 
 
 buttonEl.addEventListener("click",
@@ -6,7 +9,6 @@ function(startGame) {
     
     
     // Creazione griglia nelle diverse dimensioni
-    let gridElement = document.querySelector(".grid");
     gridElement.innerHTML = "";
     let gridLevel = decideDifficult();
     let score = [];
@@ -38,7 +40,7 @@ function(startGame) {
          }
 
 // Inserito il cambio di colore delle celle al click
-        
+
         newElement.addEventListener("click", 
         function playgame(){
 
@@ -48,17 +50,18 @@ function(startGame) {
                 for(let i = 1; i <= gridLevel; i++){
                     if(arrayNumbers.includes(i)){
                         let bombs = cells [i - 1];
-                        bombs.classList.add("red");                      
+                        bombs.classList.add("red"); 
+                        blockLayer();                   
                     }
                 }
+                
+// Condizione per generare il punteggio
             } else{
                 newElement.classList.add("active");
-                if (score.includes(i)){
-
-                } else {
+                if (!score.includes(i)){
                     score.push(i);
                     console.log(score.length)
-                }
+                } 
             }
         })
         
@@ -109,6 +112,10 @@ function(startGame) {
         sizeCell.classList.add(squareClass);
     }
 
+ }
+
+ function blockLayer(){
+    gridElement.append(layerEl);
  }
 
 

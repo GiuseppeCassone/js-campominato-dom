@@ -28,6 +28,7 @@ button{
 
 
 .grid{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     width: 600px;
@@ -70,5 +71,13 @@ button{
     background-color: red;
     background-image: url(../img/kodama.png);
     background-size: contain;
+}
+
+.lose{
+    position: absolute;
+    width: 100%;
+    height: 600px;
+    z-index: 3;
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
