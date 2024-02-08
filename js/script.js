@@ -1,30 +1,31 @@
 const buttonEl = document.querySelector("button");
-let newElement;
 
 
 buttonEl.addEventListener("click",
- function(startGame) {
+function(startGame) {
     
-     
- // Creazione griglia nelle diverse dimensioni
-     let gridElement = document.querySelector(".grid");
-     gridElement.innerHTML = "";
-     let gridLevel = decideDifficult();
-     
-// Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
+    
+    // Creazione griglia nelle diverse dimensioni
+    let gridElement = document.querySelector(".grid");
+    gridElement.innerHTML = "";
+    let gridLevel = decideDifficult();
+    let score = [];
+    
+    // Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
     let arrayNumbers = [];
-              
+    
     while(arrayNumbers.length < 16){
-         const randomNumber = Math.floor(Math.random() * gridLevel + 1)
-              
+        const randomNumber = Math.floor(Math.random() * gridLevel + 1)
+        
          if(!arrayNumbers.includes(randomNumber)){
-           arrayNumbers.push(randomNumber);
+             arrayNumbers.push(randomNumber);
           }
-      }
-
-
+        }
+        
+        
     for(let i = 1; i <= gridLevel; i++){
-
+            
+        let newElement;
         newElement = document.createElement("div");
         newElement.innerHTML = i;
         newElement.classList.add("square")
@@ -39,19 +40,24 @@ buttonEl.addEventListener("click",
 // Inserito il cambio di colore delle celle al click
         
         newElement.addEventListener("click", 
-        function(playGame){
+        function playgame(){
 
-            this.classList.add("active");
-            console.log(this.innerText);
-
+// Inserito il comando che scopre tutte le bombe quando si clicca su una di essi
             if(arrayNumbers.includes(Number(this.innerText))){
+                let cells = document.querySelectorAll(".square");
                 for(let i = 1; i <= gridLevel; i++){
-                    let cells = document.querySelectorAll(".square");
                     if(arrayNumbers.includes(i)){
                         let bombs = cells [i - 1];
-                        bombs.classList.add("red");
-                        
+                        bombs.classList.add("red");                      
                     }
+                }
+            } else{
+                newElement.classList.add("active");
+                if (score.includes(i)){
+
+                } else {
+                    score.push(i);
+                    console.log(score.length)
                 }
             }
         })

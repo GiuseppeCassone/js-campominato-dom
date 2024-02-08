@@ -14,10 +14,7 @@ header{
     justify-content: space-between;
     width: 100vw;
     padding: 10px;
-    
-    background-color: white;
-    border-bottom: 1px solid black;
-    /* test */
+    color: white;
 }
 
 #options{
@@ -49,6 +46,8 @@ button{
     height: 60px;
     border: 1px solid black;
     background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 2px black;
 }
 
 .little-square{
