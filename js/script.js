@@ -1,7 +1,7 @@
 const buttonEl = document.querySelector("button");
-const layerEl = document.createElement("div");
-layerEl.classList.add("lose");
+const layerEl = document.querySelector(".lose");
 let gridElement = document.querySelector(".grid");
+let pointsResult = document.querySelector("#points");
 
 
 buttonEl.addEventListener("click",
@@ -11,6 +11,7 @@ function(startGame) {
     // Creazione griglia nelle diverse dimensioni
     gridElement.innerHTML = "";
     let gridLevel = decideDifficult();
+    pointsResult.innerText = "";
     let score = [];
     
     // Creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
@@ -60,7 +61,7 @@ function(startGame) {
                 newElement.classList.add("active");
                 if (!score.includes(i)){
                     score.push(i);
-                    console.log(score.length)
+                    pointsResult.innerText = "Punteggio: " + score.length;
                 } 
             }
         })
@@ -115,6 +116,7 @@ function(startGame) {
  }
 
  function blockLayer(){
+    layerEl.style.display = "flex";
     gridElement.append(layerEl);
  }
 
